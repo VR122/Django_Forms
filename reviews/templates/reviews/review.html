@@ -6,12 +6,18 @@
         <title>Your review</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="static/reviews/style.css">
     </head>
     <body>
         <form method="POST">
             {% csrf_token %}
-            {{ form }}
+            {% for field in form%}
+            <div class="form-control {% if field.errors %} errors {% endif %}" >
+                {{ field.label }}
+                {{ field }}
+                {{ field.errors }}
+            </div>
+            {% endfor %}
             <button>Send</button>
         </form>
     </body>
