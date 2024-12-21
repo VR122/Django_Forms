@@ -7,11 +7,7 @@ def review(request):
     if request.method == 'POST':
         form = forms.ReviewForm(request.POST)
         if form.is_valid():
-            user_name = form.cleaned_data["user_name"]
-            review = form.cleaned_data["review"]
-            rating = form.cleaned_data["rating"]
-            new_obj = Review(user_name=user_name, review=review, rating=rating)
-            new_obj.save()
+            form.save()
             return HttpResponseRedirect('/thank-you')
     else:
         form = forms.ReviewForm()
