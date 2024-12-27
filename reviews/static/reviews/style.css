@@ -4,9 +4,9 @@ body {
 }
 
 form {
-    max-width: 400px;
+    max-width: 50%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 50px;
     background-color: #fff;
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
