@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.views import View
 from django.views.generic import TemplateView
+from django.views.generic import ListView, DetailView
 from .models import Review
 from . import forms
 
@@ -31,23 +32,14 @@ class ReviewView(View):
         })
 
 
-class AllReviewsView(TemplateView):
+class AllReviewsView(ListView):
     template_name = "reviews/review_list.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["reviews"] = Review.objects.all()
-        return context
+    model = Review
+    context_object_name = "reviews"
     
-class ReviewDetailView(TemplateView):
+class ReviewDetailView(DetailView):
     template_name = "reviews/review_detail.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        review_id = kwargs["review_id"]
-        review = Review.objects.get(id=review_id)
-        context["review"] = review
-        return context
+    model = Review
 
 class ThankYouTemplateView(TemplateView):
     template_name = "reviews/thank_you.html"
